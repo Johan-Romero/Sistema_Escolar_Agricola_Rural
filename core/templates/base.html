@@ -84,6 +84,7 @@
       }
     } 
   </style>
+
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% block extra_head %}{% endblock %}
 </head>
@@ -106,9 +107,6 @@
     </aside>
   {% endif %}
 
-
-
-
   <!-- CONTENIDO CENTRAL -->
   <main class="layout-content">
     {% block content %}{% endblock %}
@@ -120,5 +118,6 @@
   </footer>
 
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>
