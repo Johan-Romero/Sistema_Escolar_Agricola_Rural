@@ -1,8 +1,8 @@
 {% load static %}
 <div class="container-fluid d-flex align-items-center justify-content-between" style="height: 64px;">
   <div class="d-flex align-items-center">
-    <a href="{% url 'inicio' %}" class="navbar-brand fw-bold text-primary fs-4 mb-0">Sistema Escolar</a>
-    <a href="{% url 'bienvenida' %}" class="ms-3 text-decoration-none text-primary d-flex align-items-center">
+    <a href="{% url 'inicio' %}" class="navbar-brand fw-bold text-success fs-4 mb-0">Sistema Escolar</a>
+    <a href="{% url 'bienvenida' %}" class="ms-3 text-decoration-none text-success -flex align-items-center">
       <i class="bi bi-house-door-fill me-1"></i> Inicio
     </a>
   </div>
@@ -15,7 +15,7 @@
         {% else %}
           <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle me-2" width="36" height="36">
         {% endif %}
-        <span class="fw-semibold text-primary">Bienvenido, {{ user.perfil.primer_nombre }}{% if user.perfil.segundo_nombre %} {{ user.perfil.segundo_nombre }}{% endif %}</span>
+        <span class="fw-semibold text-success">Bienvenido, {{ user.perfil.primer_nombre }}{% if user.perfil.segundo_nombre %} {{ user.perfil.segundo_nombre }}{% endif %}</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end mt-2">
         <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}"><i class="bi bi-person-circle me-2"></i>Perfil de Usuario</a></li>
@@ -32,8 +32,8 @@
       </ul>
     </div>
     {% else %}
-    <a href="{% url 'login' %}" class="btn btn-primary me-2">Iniciar Sesión</a>
-    <a href="{% url 'registro' %}" class="btn btn-outline-primary">Registrarse</a>
+    <a href="{% url 'login' %}" class="btn btn-success me-2">Iniciar Sesión</a>
+    <a href="{% url 'registro' %}" class="btn btn-outline-success">Registrarse</a>
     {% endif %}
   </div>
 </div>
