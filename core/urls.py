@@ -43,6 +43,7 @@ urlpatterns = [
 
 
     # Página de inicio y bienvenida
+    
     path('bienvenida/', bienvenida, name='bienvenida'),
     path('', inicio, name='inicio'),
 

@@ -89,9 +89,11 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
   <!-- NAVBAR -->
+  {% block navbar %}
   <nav class="layout-navbar">
     {% include "includes/navbar.html" %}
   </nav>
+{% endblock %}
 
   <!-- ASIDE (menú lateral) -->
   {% if user.is_authenticated %}

@@ -11,6 +11,14 @@
       <!-- Título y acciones -->
       <h1 class=" text-success mb-3  bienvenida-flotante">
   Bienvenido Coordinador
+  <div class="position-relative d-inline-block">
+    <i class="bi bi-search text-black fs-2 ms-5"></i>
+  <i class="bi bi-bell text-black fs-2 ms-5"></i>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    2
+  </span>
+</div>
+
 </h1>
 
 <style>
@@ -59,19 +67,29 @@
         <p class="mb-0 fw-semibold text-muted">Coordinador</p>
         <p class="fw-bold text-dark">Ruben Flores</p>
       </div>
-      <div class="mb-3">
-  <label for="fecha" class="form-label"> Fecha:</label>
-  <input type="text" id="fecha" class="form-control" placeholder="Selecciona una fecha">
-  <script>
-  ('#datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    language: 'es',
-    autoclose: true,
-    todayHighlight: true
-  });
+      <!-- Campo de fecha con estilos -->
+<div class="mb-3">
+    <label for="fecha" class="form-label fw-bold">Fecha:</label>
+    <input 
+        type="date" 
+        id="fecha" 
+        name="fecha" 
+        class="form-control shadow-sm rounded-3 border-success"
+        style="max-width: 250px;"
+        value="{{ fecha_seleccionada|default:'' }}"
+        onchange="filtrarPorFecha(this.value)"
+    >
+</div>
+
+<script>
+    function filtrarPorFecha(fechaSeleccionada) {
+        if (fechaSeleccionada) {
+            // Redirige a la misma página con el parámetro de fecha
+            window.location.href = `?fecha=${fechaSeleccionada}`;
+        }
+    }
 </script>
 
-</div>
 
       <!-- Usuarios activos -->
       <div class="card shadow-sm">
