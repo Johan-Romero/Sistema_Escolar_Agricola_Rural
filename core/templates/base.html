@@ -90,9 +90,9 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
   <!-- NAVBAR -->
-  <nav class="layout-navbar">
-    {% include "includes/navbar.html" %}
-  </nav>
+
+  {% include "includes/navbar.html" %}
+
 
   <!-- ASIDE (menú lateral) -->
   {% if user.is_authenticated %}
@@ -108,7 +108,7 @@
   {% endif %}
 
   <!-- CONTENIDO CENTRAL -->
-  <main class="layout-content">
+  <main class="layout-content mt-4">
     {% block content %}{% endblock %}
   </main>
 
