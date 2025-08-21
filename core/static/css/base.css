@@ -12,8 +12,7 @@ html, body {
 body {
   min-height: 100vh;
   overflow: hidden;
-  background: #f8f9fa;
-  padding-top: 100px; /* igual a la altura de tu navbar */
+  background: #ffffff;
 }
 body.no-aside .layout-content {
   left: 0 !important;
@@ -82,36 +81,41 @@ body.no-aside .layout-content {
   }
 }
 
-/* navbar */
-
+/* =========================
+   NAVBAR
+   ========================= */
 .school-navbar {
-  position: fixed;          /* Siempre fijo */
-  top: 10px;                /* Separado un poco desde arriba */
-  left: 50%;                /* Centrado */
+  position: fixed;
+  top: 20px;
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 1050;            /* Encima de todo */
-  background: #198754;      /* Verde Bootstrap */
+  width: 90%;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(0, 160, 72, 0.6); /* Verde translúcido con blur */
   padding: 0.5rem 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.2); /* borde suave */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-radius: 50px;
+  z-index: 1050;
 }
-
-
 
 /* Evitar cortes del navbar */
 body, main, .container, .container-fluid, .row {
   overflow: visible !important;
 }
 
+/* Marca / título */
 .school-navbar-brand {
   font-weight: 700;
   font-size: 1.6rem;
   margin-bottom: 0;
-  color: white !important; /* antes azul */
+  color: white !important;
   transition: color 0.2s;
 }
 
+/* Enlaces */
 .school-navbar-link {
-  color: white !important;   /* antes azul */
+  color: white !important;
   font-weight: 500;
   font-size: 1.06rem;
   padding: 0.3rem 0.9rem;
@@ -127,21 +131,27 @@ body, main, .container, .container-fluid, .row {
   text-decoration: none;
 }
 
-/* Botones dorados */
-.school-navbar-login-btn,
-.school-navbar-register-btn {
+.school-nav .nav-link:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  color: white !important; /* mantiene el color normal, no azul */
+}
+
+
+/* =========================
+   BOTONES
+   ========================= */
+
+/* Iniciar sesión: dorado sólido */
+.school-navbar-login-btn {
   font-weight: 600;
   border-radius: 20px;
   padding: 0.38rem 1.25rem;
   font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-/* Iniciar sesión: dorado sólido */
-.school-navbar-login-btn {
   background-color: #d4af37;
   color: white;
   border: none;
+  transition: all 0.3s ease;
 }
 .school-navbar-login-btn:hover {
   background-color: #b7950b;
@@ -150,47 +160,37 @@ body, main, .container, .container-fluid, .row {
 
 /* Registrarse: dorado outline */
 .school-navbar-register-btn {
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 0.38rem 1.25rem;
+  font-size: 1rem;
   background-color: transparent;
   color: #ffffff;
   border: 2px solid #d4af37;
+  transition: all 0.3s ease;
 }
 .school-navbar-register-btn:hover {
   background-color: #ffffff;
   color: #d4af37;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .school-navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 0.7rem;
-    text-align: center;
-  }
-  .school-navbar-brand {
-    font-size: 1.25rem;
-  }
-  .school-navbar-link {
-    display: block;
-    margin: 0.3rem 0;
-  }
-}
-
+/* =========================
+   NAV LINKS Y ESTADOS
+   ========================= */
 .school-nav .nav-link {
   color: white;
   font-weight: 500;
-  font-size: 1.05rem;
-  margin: 0 0.8rem;
+  font-size: 0.9rem;
+  margin: 0 0.4rem;
+  padding: 0.25rem 0.5rem;
   position: relative;
   transition: color 0.3s;
 }
 
-/* Hover */
 .school-nav .nav-link:hover {
-  color: #006eff;
+  color: #ffd700; /* dorado al hover */
 }
 
-/* Activo con línea blanca */
 .school-nav .nav-link.active {
   color: white;
   font-weight: 600;
@@ -207,48 +207,67 @@ body, main, .container, .container-fluid, .row {
   border-radius: 2px;
 }
 
+/* =========================
+   LOGO Y TÍTULO
+   ========================= */
 .navbar-title {
-  font-size: 1.8rem; /* Ajusta al tamaño de tu imagen */
+  font-size: 1.8rem;
   font-weight: bold;
   color: white;
   text-shadow: 
     -1px -1px 0 #007bff,  
      1px -1px 0 #007bff,
     -1px  1px 0 #007bff,
-     1px  1px 0 #007bff; /* Borde azul */
+     1px  1px 0 #007bff; /* borde azul */
 }
 
-/* Logo */
 .school-navbar-logo {
   width: 60px;
   height: auto;
 }
 
-/* Botón hamburguesa */
+/* =========================
+   HAMBURGUESA Y MENÚ MÓVIL
+   ========================= */
 .navbar-toggler {
   background: none;
   border: none;
   font-size: 1.8rem;
   color: white;
   cursor: pointer;
-  display: none; /* solo móvil */
+  display: none;
 }
 
-/* Menú */
 .school-navbar-menu {
-  display: none; /* oculto por defecto */
-  background: rgb(0, 165, 63);
+  display: none;
+  background: rgba(0, 165, 63, 0.9); /* fondo verde translúcido */
   border-radius: 15px;
   padding: 1rem;
   margin-top: 0.5rem;
 }
-
-/* Cuando está abierto */
 .school-navbar-menu.show {
   display: block;
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 600px) {
+  .school-navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 0.7rem;
+    text-align: center;
+  }
+  .school-navbar-brand {
+    font-size: 1.25rem;
+  }
+  .school-navbar-link {
+    display: block;
+    margin: 0.3rem 0;
+  }
+}
+
 @media (min-width: 992px) {
   .navbar-toggler {
     display: none;
