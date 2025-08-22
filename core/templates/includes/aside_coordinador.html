@@ -1,64 +1,109 @@
 {% load static %}
 
+<!-- Sidebar -->
+<div class="sidebar bg-success text-white min-vh-100 d-flex flex-column align-items-start p-4">
 
-<div class="bg-success text-white p-7 min-vh-100">
-
-   <div class="d-flex align-items-center gap-8 mb-4 ps-5">
-  <img src="{% static 'img/imag.jpg' %}" alt="imag" class="rounded-circle border shadow" style="width: 130px; height: 130px;">
+  <!-- Perfil / Logo -->
+  <div class="text-center w-100 mb-4">
+    <img src="{% static 'img/imag.jpg' %}" 
+         alt="Usuario" 
+         class="profile-img rounded-circle border shadow">
   </div>
 
+  <!-- Menú -->
+  <nav class="nav flex-column w-100">
+    <a href="{% url 'lista_niveles' %}" class="nav-link sidebar-link">
+      📚 <span>Niveles Educativos</span>
+    </a>
 
-  <a href="{% url 'lista_niveles' %}"
-   class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-   style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  📚 <span>Niveles Educativos</span>
+    <a href="{% url 'lista_grados' %}" class="nav-link sidebar-link">
+      🎓 <span>Grados</span>
+    </a>
 
-  </a>
-  
+    <a href="{% url 'lista_areas' %}" class="nav-link sidebar-link">
+      🧩 <span>Áreas</span>
+    </a>
 
-   <a href="{% url 'lista_grados' %}"
-  class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  🎓 <span>Grados</span>
-</a>
+    <a href="{% url 'lista_asignaturas' %}" class="nav-link sidebar-link">
+      📘 <span>Asignaturas</span>
+    </a>
 
-<a href="{% url 'lista_areas' %}"
-  class="bienvenida-flotante btn elevable d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  🧩 <span>Áreas</span>
-</a>
+    <a href="{% url 'lista_aulas' %}" class="nav-link sidebar-link">
+      🚪 <span>Aulas</span>
+    </a>
 
-<a href="{% url 'lista_asignaturas' %}"
-  class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  📘 <span>Asignaturas</span>
-</a>
+    <a href="{% url 'lista_grupos' %}" class="nav-link sidebar-link">
+      👥 <span>Grupos</span>
+    </a>
 
-<a href="{% url 'lista_aulas' %}"
-  class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  🚪 <span>Aulas</span>
-</a>
+    <a href="{% url 'usuarios_pendientes' %}" class="nav-link sidebar-link">
+      🧑‍💼 <span>Validar Usuarios</span>
+    </a>
+  </nav>
 
-<a href="{% url 'lista_grupos' %}"
-  class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  👥 <span>Grupos</span>
-</a>
+  <!-- Botón de logout -->
+  <div class="mt-auto w-100">
+    <a href="{% url 'logout' %}" class="nav-link logout-link">
+      🚪 <span>Cerrar Sesión</span>
+    </a>
+  </div>
+</div>
 
-<a href="{% url 'usuarios_pendientes' %}"
-  class="bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
-  style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
-  🧑‍💼 <span>Validar Usuarios</span>
-</a>
+<!-- Estilos personalizados -->
+<style>
+  .sidebar {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 
-<a href="{% url 'logout' %}"
-  class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mt-4"
-  style="background-color: #fff5f5; color: #d00000; font-size: 1rem; font-weight: 500; border: 1px solid #ffcccc;">
-  🚪 <span>Cerrar Sesión</span>
-</a>
+  .profile-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+  }
 
-{% load static %}
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    background-color: #f2eaff;
+    color: #177622;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-link:hover {
+    background-color: #e4d9fa;
+    color: #0f4f16;
+    transform: translateX(4px);
+  }
+
+  .logout-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background-color: #fff5f5;
+    color: #d00000;
+    border: 1px solid #ffcccc;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .logout-link:hover {
+    background-color: #ffe5e5;
+    transform: translateX(4px);
+  }
+</style>
 
 <link rel="stylesheet" href="{% static 'css/aside_coordinador.css' %}">
 
+  
