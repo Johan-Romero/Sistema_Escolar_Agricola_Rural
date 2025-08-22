@@ -12,7 +12,7 @@ html, body {
 body {
   min-height: 100vh;
   overflow: hidden;
-  background: #f8f9fa;
+  background: #ffffff;
 }
 body.no-aside .layout-content {
   left: 0 !important;
@@ -78,5 +78,213 @@ body.no-aside .layout-content {
     left: 65px;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.school-navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(0, 160, 72, 0.6); /* Verde translúcido con blur */
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.2); /* borde suave */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-radius: 50px;
+  z-index: 1050;
+}
+
+/* Evitar cortes del navbar */
+body, main, .container, .container-fluid, .row {
+  overflow: visible !important;
+}
+
+/* Marca / título */
+.school-navbar-brand {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0;
+  color: white !important;
+  transition: color 0.2s;
+}
+
+/* Enlaces */
+.school-navbar-link {
+  color: white !important;
+  font-weight: 500;
+  font-size: 1.06rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 0.7rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.school-navbar-link:hover,
+.school-navbar-link:focus {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffd700 !important; /* dorado al hover */
+  text-decoration: none;
+}
+
+.school-nav .nav-link:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  color: white !important; /* mantiene el color normal, no azul */
+}
+
+
+/* =========================
+   BOTONES
+   ========================= */
+
+/* Iniciar sesión: dorado sólido */
+.school-navbar-login-btn {
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 0.38rem 1.25rem;
+  font-size: 1rem;
+  background-color: #d4af37;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+.school-navbar-login-btn:hover {
+  background-color: #b7950b;
+  color: white;
+}
+
+/* Registrarse: dorado outline */
+.school-navbar-register-btn {
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 0.38rem 1.25rem;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #d4af37;
+  transition: all 0.3s ease;
+}
+.school-navbar-register-btn:hover {
+  background-color: #ffffff;
+  color: #d4af37;
+}
+
+/* =========================
+   NAV LINKS Y ESTADOS
+   ========================= */
+.school-nav .nav-link {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin: 0 0.4rem;
+  padding: 0.25rem 0.5rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.school-nav .nav-link:hover {
+  color: #ffd700; /* dorado al hover */
+}
+
+.school-nav .nav-link.active {
+  color: white;
+  font-weight: 600;
+}
+.school-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* =========================
+   LOGO Y TÍTULO
+   ========================= */
+.navbar-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 
+    -1px -1px 0 #007bff,  
+     1px -1px 0 #007bff,
+    -1px  1px 0 #007bff,
+     1px  1px 0 #007bff; /* borde azul */
+}
+
+.school-navbar-logo {
+  width: 60px;
+  height: auto;
+}
+
+/* =========================
+   HAMBURGUESA Y MENÚ MÓVIL
+   ========================= */
+.navbar-toggler {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.school-navbar-menu {
+  display: none;
+  background: rgba(0, 165, 63, 0.9); /* fondo verde translúcido */
+  border-radius: 15px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+.school-navbar-menu.show {
+  display: block;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 600px) {
+  .school-navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 0.7rem;
+    text-align: center;
+  }
+  .school-navbar-brand {
+    font-size: 1.25rem;
+  }
+  .school-navbar-link {
+    display: block;
+    margin: 0.3rem 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none;
+  }
+  .school-navbar-menu {
+    display: flex !important;
+    background: none;
+    margin-top: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
+  .school-navbar-menu ul {
+    flex-direction: row !important;
+    margin-bottom: 0;
+  }
+  .school-navbar-menu .d-flex {
+    margin-left: 1rem;
   }
 }
