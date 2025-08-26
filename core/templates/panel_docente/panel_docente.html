@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Panel Docente{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4 text-primary">Panel Docente</h1>
+
+  <div class="list-group">
+    <a href="{% url 'docente_datos_basicos' %}">Datos Básicos</a>
+" class="list-group-item list-group-item-action">
+      📄 Datos básicos
+    </a>
+    <a href="{% url 'docente_educacion' %}" class="list-group-item list-group-item-action">
+      🎓 Educación
+    </a>
+    <a href="{% url 'docente_capacitacion' %}" class="list-group-item list-group-item-action">
+      📘 Capacitación
+    </a>
+    <a href="{% url 'docente_idiomas' %}" class="list-group-item list-group-item-action">
+      🌐 Idiomas
+    </a>
+    <a href="{% url 'docente_experiencia' %}" class="list-group-item list-group-item-action">
+      💼 Experiencia
+    </a>
+  </div>
+</div>
+{% endblock %}
