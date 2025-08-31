@@ -207,6 +207,27 @@
   </div>
 </section>
 
+<!-- Sección Estadísticas -->
+<section id="estadisticas" class="py-5 text-white" style="background-color: #2e7d32;">
+  <div class="container">
+    <h2 class="fw-bold mb-5 text-center">Nuestra Trayectoria en Números</h2>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <h3 class="display-4 fw-bold" data-stat-target="1000">0</h3>
+        <p class="lead">Estudiantes Graduados</p>
+      </div>
+      <div class="col-md-4">
+        <h3 class="display-4 fw-bold" data-stat-target="20">0</h3>
+        <p class="lead">Años de Experiencia</p>
+      </div>
+      <div class="col-md-4">
+        <h3 class="display-4 fw-bold" data-stat-target="50">0</h3>
+        <p class="lead">Programas Académicos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Sección Cultura -->
 <section id="cultura" class="d-flex align-items-center min-vh-100">
   <div class="container text-center">
@@ -310,5 +331,6 @@
 <script>
   AOS.init();
 </script>
+<script src="{% static 'js/stats-animation.js' %}"></script>
 
 {% endblock %}
