@@ -9,7 +9,7 @@ Este sistema permite gestionar currículo, docentes, estudiantes, matrículas y 
 
 - Python 3.10+
 - Django 5.x
-- Tailwind CSS
+- Bootstrap
 - PostgreSQL 15–17 (en modo desarrollo y producción)venv\Scripts\activate
 - Node.js (para compilar Tailwind)
 
@@ -20,8 +20,8 @@ Este sistema permite gestionar currículo, docentes, estudiantes, matrículas y 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/jdcarvajalMontoya/SistemaEscolarBootstrap.git
-cd SistemaEscolarBootstrap
+git clone https://github.com/Johan-Romero/Sistema_Escolar_Agricola_Rural.git
+cd Sistema_Escolar_Agricula_Rural
 
 ## Licencia
 
