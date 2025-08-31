@@ -22,6 +22,8 @@ Este sistema permite gestionar currículo, docentes, estudiantes, matrículas y 
 ```bash
 git clone https://github.com/Johan-Romero/Sistema_Escolar_Agricola_Rural.git
 cd Sistema_Escolar_Agricula_Rural
+pip install -r requirements.txt (Instalar Requerimientos obligatorios)
+
 
 ## Licencia
 
