@@ -304,7 +304,9 @@
   <!-- Scripts -->
   <script src="{% static 'js/scroll.js' %}"></script>
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-  {% block extra_js %}{% endblock %}
+  {% block extra_js %}
+  <script src="{% static 'js/main.js' %}"></script>
+  {% endblock %}
 
 </body>
 </html>
