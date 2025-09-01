@@ -221,8 +221,12 @@ body, main, .container, .container-fluid, .row {
      1px  1px 0 #007bff; /* borde azul */
 }
 
-section[id] {
-  scroll-margin-top: 130px;
+section[id]::before {
+  content: "";
+  display: block;
+  height: 130px;
+  margin-top: -130px;
+  visibility: hidden;
 }
 
 .school-navbar-logo {
