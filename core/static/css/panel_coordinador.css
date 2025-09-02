@@ -1,3 +1,32 @@
+/* Layout for the coordinator panel */
+.panel-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.panel-main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.panel-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: #f8f9fa; /* Match Bootstrap's bg-light */
+}
+
+.panel-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.panel-footer {
+  flex-shrink: 0;
+}
+
+/* Styles for the welcome message, preserved from the original file */
 .panel-coordinador-welcome {
   margin-top: 4rem;
   text-align: center;

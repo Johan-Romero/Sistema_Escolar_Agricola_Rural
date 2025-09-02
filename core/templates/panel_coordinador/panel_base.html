@@ -1,34 +1,6 @@
-{% extends "base.html" %}
+{% extends "panel_coordinador/panel_layout.html" %}
 
-{% block content %}
-<div class="dashboard-flex-layout">
-  <!-- Menú lateral -->
-
-  <aside class="w-64 bg-blue-800 text-gray-100 min-h-screen px-4 py-6 space-y-4 shadow-lg">
-    <h2 class="text-2xl font-bold text-gray-100 mb-6">🎓 Coordinador Académico</h2>
-  
-    <nav class="space-y-2">
-      <a href="{% url 'panel_coordinador' %}" class="block hover:bg-bla-500 px-3 py-2 rounded">🏠 Inicio</a>
-  
-      <a href="{% url 'usuarios_pendientes' %}" class="block hover:bg-blue-700 px-3 py-2 rounded flex justify-between items-center">
-
-        🕒 Validar Usuarios
-        {% if pending_count > 0 %}
-          <span class="dashboard-badge-pending">{{ pending_count }}</span>
-        {% endif %}
-      </a>
-
-      <a href="{% url 'lista_asignaciones' %}" class="dashboard-nav-link">📚 Asignaciones</a>
-
-      <a href="{% url 'logout' %}" class="dashboard-nav-link dashboard-nav-logout">🚪 Cerrar sesión</a>
-    </nav>
-  </aside>
-
-  <!-- Contenido del panel -->
-  <main class="dashboard-main-content">
-    {% block panel_content %}{% endblock %}
-  </main>
- 
-</div>
-<link rel="stylesheet" href="{% static 'css/panel_base.css' %}">
+{% block panel_content %}
+  {# This block will be filled by the specific panel pages #}
+  {% block page_content %}{% endblock %}
 {% endblock %}
