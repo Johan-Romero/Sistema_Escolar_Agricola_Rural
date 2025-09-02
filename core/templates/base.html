@@ -107,6 +107,7 @@
 
 <body class="{% block body_class %}{% endblock %}">
 
+  {% block navbar %}
   <!-- NAVBAR -->
   <div class="container school-navbar d-flex align-items-center justify-content-between rounded-pill mt-4">
 
@@ -177,6 +178,7 @@
       {% endif %}
     </div>
   </div>
+  {% endblock %}
 
   <!-- Modal Login -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
