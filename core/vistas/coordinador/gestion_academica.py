@@ -52,7 +52,18 @@ def eliminar_nivel(request, pk):
     NivelEducativo.objects.get(pk=pk).delete()
     messages.success(request, "Nivel Educativo eliminado.")
     return redirect('lista_niveles')
+# dashboard
+@login_required
+@user_passes_test(es_coordinador)
+def dashboard(request):
+    
+    return render(request, 'panel_coordinador/dashboard_base.html')
 
+@login_required
+@user_passes_test(es_coordinador)
+def validar_usuario(request):
+    
+    return render(request, 'panel_coordinador/dashboard_base.html')
 # Grados
 @login_required
 @user_passes_test(es_coordinador)

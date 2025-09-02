@@ -33,7 +33,7 @@ from core.vistas.coordinador.gestion_academica import (
     lista_logros, crear_logro, editar_logro, eliminar_logro,
     lista_aulas, crear_aula, editar_aula, eliminar_aula,
     lista_grupos, crear_grupo, editar_grupo, eliminar_grupo,
-    lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion
+    lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion,dashboard,
 )
 
 from django.contrib.auth import views as auth_views
@@ -44,6 +44,7 @@ urlpatterns = [
     
     path('login/', login_usuario, name='login'),
 
+    path('dashboard_base/', dashboard, name='dashboard'),
 
     # Página de inicio y bienvenida
     
@@ -62,11 +63,11 @@ urlpatterns = [
     
     # Cerrar
     path('logout/', logout_usuario, name='logout'),
-
     # Registro de usuarios
-    path('registro/', registro_usuario, name='registro'),   
+    path('registro/', registro_usuario, name='registro'),
 
-    # Rutas para la gestión del currículo y áreas educativas por el Coordinador Académico
+
+    
     # Niveles Educativos
     path('coordinador/niveles/', lista_niveles, name='lista_niveles'),
     path('coordinador/niveles/nuevo/', crear_nivel, name='crear_nivel'),
@@ -155,5 +156,6 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
 
 
