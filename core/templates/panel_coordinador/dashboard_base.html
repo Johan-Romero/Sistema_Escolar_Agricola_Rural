@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block navbar %}
+{% comment %}
+  Este bloque está intencionadamente vacío para eliminar la barra de navegación
+  en el panel del coordinador. La barra de navegación principal se encuentra en
+  la plantilla `base.html`, pero al sobreescribir el bloque `navbar` con un
+  bloque vacío, evitamos que se renderice en las páginas que heredan de
+  esta plantilla.
+{% endcomment %}
+{% endblock %}
 
 {% block content %}
 <div class="container-fluid mt-4">
