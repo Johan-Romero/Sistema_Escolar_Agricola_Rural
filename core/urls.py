@@ -21,7 +21,9 @@ from core.vistas.docente.experiencia import docente_experiencia_view
 from core.vistas.coordinador.panel import (
     panel_coordinador,
     usuarios_pendientes,
-    activar_usuario
+    activar_usuario, 
+  
+
 )
 
 from core.vistas.coordinador.gestion_academica import (
@@ -33,7 +35,8 @@ from core.vistas.coordinador.gestion_academica import (
     lista_logros, crear_logro, editar_logro, eliminar_logro,
     lista_aulas, crear_aula, editar_aula, eliminar_aula,
     lista_grupos, crear_grupo, editar_grupo, eliminar_grupo,
-    lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion
+    lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion, 
+    panel
 )
 
 from django.contrib.auth import views as auth_views
@@ -59,6 +62,7 @@ urlpatterns = [
     path('panel-coordinador/', panel_coordinador, name='panel_coordinador'),
     path('panel-acudiente/', panel_acudiente, name='panel_acudiente'),
     
+    
     # Cerrar
     path('logout/', logout_usuario, name='logout'),
 
@@ -67,6 +71,7 @@ urlpatterns = [
 
     # Rutas para la gestión del currículo y áreas educativas por el Coordinador Académico
     # Niveles Educativos
+    path('coordinador/panel/', panel, name='panel'),
     path('coordinador/niveles/', lista_niveles, name='lista_niveles'),
     path('coordinador/niveles/nuevo/', crear_nivel, name='crear_nivel'),
     path('coordinador/niveles/editar/<int:pk>/', editar_nivel, name='editar_nivel'),

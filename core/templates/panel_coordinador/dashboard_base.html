@@ -15,6 +15,7 @@
     </div>
 
     <nav class="sidebar-menu">
+      <a href="{% url 'panel' %}" class="menu-link"><i class="bi bi-journal-text"></i> Inicio</a>
       <a href="{% url 'lista_niveles' %}" class="menu-link"><i class="bi bi-journal-text"></i> Niveles Educativos</a>
       <a href="{% url 'lista_grados' %}" class="menu-link"><i class="bi bi-collection"></i> Grados</a>
       <a href="{% url 'lista_areas' %}" class="menu-link"><i class="bi bi-flower3"></i> Áreas</a>
@@ -66,13 +67,7 @@
       <input type="date" class="form-control mb-3">
     </div>
 
-    <!-- Lista de Usuarios Activos -->
-    <div class="active-users">
-      <h6>Usuarios Activos</h6>
-      <div class="user-item"><img src="{% static 'img/default_avatar.png' %}"> alma maria <span class="status online"></span></div>
-      <div class="user-item"><img src="{% static 'img/default_avatar.png' %}"> johannsen <span class="status online"></span></div>
-      <div class="user-item"><img src="{% static 'img/default_avatar.png' %}"> drilococo <span class="status offline"></span></div>
-    </div>
+
 
     <!-- Notas -->
     <div class="notes-section">

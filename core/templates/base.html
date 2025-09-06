@@ -21,7 +21,12 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
+    
+  <!-- 🔽 Barra de navegación incluida -->
   
+    {% include "includes/navbar.html" %}
+    
+    
     {% block content %}{% endblock %}
   
 

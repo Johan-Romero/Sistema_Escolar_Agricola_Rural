@@ -15,6 +15,11 @@ from core.forms import (
 def es_coordinador(user):
     return user.rol.nombre == 'Coordinador Académico'
 
+@login_required
+@user_passes_test(es_coordinador)
+def panel(request):
+    return render(request, 'panel_coordinador/panel.html')
+
 # Y a continuación, todas las funciones tal como están en tu views.py:
 # lista_niveles, crear_nivel, editar_nivel, eliminar_nivel, etc...
 # Módulos del Coordinador Académico

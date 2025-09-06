@@ -25,7 +25,7 @@ def bienvenida(request):
             except Exception as e:
                 messages.error(request, 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.')
 
-            return redirect('bienvenida')
+            return redirect('bienvenida', {'ocultar_navbar': False})
     else:
         form = ContactoForm()
 
