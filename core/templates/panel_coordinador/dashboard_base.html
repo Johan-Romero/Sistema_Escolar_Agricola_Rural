@@ -2,75 +2,139 @@
 {% load static %}
 
 {% block content %}
-<div class="main-container">
-    <div class="sidebar">
-        <div class="sidebar-header">
+<div class="content-area">
+    <div class="top-header-container">
+        <div class="fecha-container">
+            <div class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2 school-navbar-user-btn">
+                <i class="bi bi-calendar-event-fill me-2 text-success"></i>
+                <span id="current-date" class="fw-semibold text-success"></span>
+            </div>
         </div>
-       
+        <div class="user-menu-container">
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                <button class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2 school-navbar-user-btn"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if user.perfil.foto %}
+                    <img src="{{ user.perfil.foto.url }}" class="rounded-circle me-2" width="36" height="36"
+                        style="object-fit:cover;">
+                    {% else %}
+                    <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle me-2" width="36" height="36">
+                    {% endif %}
+                    <span class="fw-semibold text-success">Bienvenido {{ user.perfil.primer_nombre }}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end mt-2">
+                    <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">
+                            <i class="bi bi-person-circle me-2"></i>Perfil de Usuario</a></li>
+                    <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">
+                            <i class="bi bi-pencil-square me-2"></i>Editar Perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
     </div>
 
-    <div class="content-area">
-        <div class="top-header-container">
-            <div class="fecha-container">
-                <div class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2 school-navbar-user-btn">
-                    <i class="bi bi-calendar-event-fill me-2 text-success"></i>
-                    <span id="current-date" class="fw-semibold text-success"></span>
-                </div>
+    <div class="banner">
+        <div class="banner-overlay">
+            <div class="banner-text text-center">
+                <i class="fas fa-rocket icon"></i>
+                <h2 class="fw-bold mt-3">¡Hola, Bienvenido!</h2>
+                <p class="fs-4 mt-3">
+                    Te damos la más cordial bienvenida al panel de coordinación del sistema escolar. <br>
+                    Desde aquí, podrás gestionar y supervisar todas las actividades de la plataforma de manera
+                    eficiente.
+                </p>
             </div>
-            <div class="user-menu-container">
-                {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <button class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2 school-navbar-user-btn"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if user.perfil.foto %}
-                        <img src="{{ user.perfil.foto.url }}" class="rounded-circle me-2" width="36" height="36"
-                            style="object-fit:cover;">
-                        {% else %}
-                        <img src="{% static 'img/default_avatar.png' %}" class="rounded-circle me-2" width="36" height="36">
-                        {% endif %}
-                        <span class="fw-semibold text-success">Bienvenido {{ user.perfil.primer_nombre }}</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end mt-2">
-                        <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">
-                                <i class="bi bi-person-circle me-2"></i>Perfil de Usuario</a></li>
-                        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">
-                                <i class="bi bi-pencil-square me-2"></i>Editar Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form method="post" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="dropdown-item text-danger">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="banner">
-            <div class="banner-overlay">
-                <div class="banner-text text-center">
-                    <i class="fas fa-rocket icon"></i>
-                    <h2 class="fw-bold mt-3">¡Hola, Bienvenido!</h2>
-                    <p class="fs-4 mt-3">
-                        Te damos la más cordial bienvenida al panel de coordinación del sistema escolar. <br>
-                        Desde aquí, podrás gestionar y supervisar todas las actividades de la plataforma de manera eficiente.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard-container">
-            <div class="dashboard-main">
-                </div>
-
-            <div class="dashboard-sidebar">
-                </div>
         </div>
     </div>
+
+    <div class="dashboard-container">
+        {% load static %}
+
+
+        <div class="bg-success text-white p-7 min-vh-100">
+
+            <div class="d-flex align-items-center gap-8 mb-4 ps-5">
+                <img src="{% static 'img/imag.jpg' %}" alt="imag" class="rounded-circle border shadow"
+                    style="width: 130px; height: 130px;">
+            </div>
+
+
+            <a href="{% url 'dashboard' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center-4 gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                🏠 <span>Inicio</span>
+            </a>
+
+            <a href="{% url 'lista_niveles' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                📚 <span>Niveles Educativos</span>
+
+            </a>
+
+
+            <a href="{% url 'lista_grados' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                🎓 <span>Grados</span>
+            </a>
+
+            <a href="{% url 'lista_areas' %}"
+                class="bienvenida-flotante btn elevable d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                🧩 <span>Áreas</span>
+            </a>
+
+            <a href="{% url 'lista_asignaturas' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                📘 <span>Asignaturas</span>
+            </a>
+
+            <a href="{% url 'lista_aulas' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                🚪 <span>Aulas</span>
+            </a>
+
+            <a href="{% url 'lista_grupos' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                👥 <span>Grupos</span>
+            </a>
+
+            <a href="{% url 'usuarios_pendientes' %}"
+                class="bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mb-2"
+                style="background-color: #f2eaff; color: #177622; font-size: 1rem; font-weight: 500;">
+                🧑‍💼 <span>Validar Usuarios</span>
+            </a>
+
+            <a href="{% url 'logout' %}"
+                class=" bienvenida-flotante btn elevable btn d-flex align-items-center gap-2 shadow-sm rounded-4 px-3 py-2 text-decoration-none mt-4"
+                style="background-color: #fff5f5; color: #d00000; font-size: 1rem; font-weight: 500; border: 1px solid #ffcccc;">
+                🚪 <span>Cerrar Sesión</span>
+            </a>
+
+            {% load static %}
+
+            <link rel="stylesheet" href="{% static 'css/aside_coordinador.css' %}">
+
+
+        </div>
+    </div>
+</div>
 </div>
 
 <script>
@@ -138,7 +202,7 @@
         flex-direction: column;
         position: relative;
     }
-    
+
     .top-header-container {
         display: flex;
         justify-content: flex-end;
@@ -150,7 +214,7 @@
     .school-navbar-user-btn {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    
+
     .fecha-container .school-navbar-user-btn {
         background-color: white;
         color: #006837;
@@ -202,9 +266,12 @@
 
     /* Animación flotante del cohete */
     @keyframes floatRocket {
-        0%, 100% {
+
+        0%,
+        100% {
             transform: translateY(-10px);
         }
+
         50% {
             transform: translateY(10px);
         }
