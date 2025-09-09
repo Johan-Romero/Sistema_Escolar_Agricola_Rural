@@ -1,10 +1,77 @@
 {% extends 'panel_docente/dashboard_base.html' %}
 {% load static %}
+{% load widget_tweaks %}  {# 👈 Necesario para usar add_class #}
+
 {% block panel_content %}
-  <div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
-    <h1 class="h4 fw-bold text-primary mb-3">
-      <i class="bi bi-mortarboard"></i> Educación del Docente
+
+
+<!-- Sección título -->
+<div class="card shadow mt-3 mx-auto" style="max-width: 700px;">
+  <div class="card-body">
+    <h1 class="h4 fw-bold text-success mb-3">
+      <i class="bi bi-mortarboard-fill me-2"></i> Educación del Docente
     </h1>
-    <p class="text-secondary">Esta sección está en construcción. Aquí se mostrará la formación académica del docente.</p>
+
+    <!-- Formulario de Educación -->
+    <h5 class="text-secondary">Agregar Educación</h5>
+    <form method="post">
+      {% csrf_token %}
+      
+      <!-- Nivel -->
+      <div class="mb-3">
+        <label for="nivel" class="form-label">Nivel</label>
+        <input type="text" class="form-control" id="nivel" name="nivel" placeholder="Ej: Pregrado, Maestría, Doctorado">
+      </div>
+
+      <!-- Institución -->
+      <div class="mb-3">
+        <label for="institucion" class="form-label">Institución</label>
+        <input type="text" class="form-control" id="institucion" name="institucion" placeholder="Ej: Universidad Nacional">
+      </div>
+
+      <!-- Título Obtenido -->
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título Obtenido</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ej: Licenciatura en Matemáticas">
+      </div>
+
+      <!-- Fechas -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="fecha_inicio" class="form-label">Fecha de Inicio</label>
+          <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="fecha_fin" class="form-label">Fecha de Fin</label>
+          <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+        </div>
+      </div>
+
+      <!-- Botón Guardar -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
   </div>
+</div>
+
+<!-- Tabla o lista de educación registrada -->
+<div class="card shadow mt-3 mx-auto" style="max-width: 700px;">
+  <div class="card-body">
+    <h5 class="text-secondary">Educación Registrada</h5>
+    {% if educaciones %}
+      <ul class="list-group">
+        {% for edu in educaciones %}
+          <li class="list-group-item">
+            <strong>{{ edu.nivel }}</strong> - {{ edu.titulo }} <br>
+            <small>{{ edu.institucion }} ({{ edu.fecha_inicio }} - {{ edu.fecha_fin }})</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">Aún no has registrado educación.</p>
+    {% endif %}
+  </div>
+</div>
+
 {% endblock %}

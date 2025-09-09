@@ -36,6 +36,14 @@ from core.vistas.coordinador.gestion_academica import (
     lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion
 )
 
+
+from django.urls import path
+from .import views   # 👈 importa views.py
+
+urlpatterns = [
+    path('educacion/', views.educacion_docente, name='educacion_docente'),
+]
+
 from django.contrib.auth import views as auth_views
 
 
