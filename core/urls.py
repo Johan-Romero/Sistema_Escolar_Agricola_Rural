@@ -39,6 +39,14 @@ from core.vistas.coordinador.gestion_academica import (
     panel
 )
 
+
+from django.urls import path
+from .import views   # 👈 importa views.py
+
+urlpatterns = [
+    path('hoja-de-vida/', views.hoja_de_vida, name='hoja_de_vida'),
+]
+
 from django.contrib.auth import views as auth_views
 
 

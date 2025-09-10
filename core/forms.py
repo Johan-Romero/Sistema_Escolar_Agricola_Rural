@@ -453,10 +453,20 @@ class IdentidadForm(forms.ModelForm):
             }),
         }
 
+from django import forms
+from .models import EducacionDocente   # 👈 importa tu modelo (ajusta el nombre real del modelo)
+
 class EducacionDocenteForm(forms.ModelForm):
     class Meta:
-        model = EducacionDocente
-        fields = '__all__'
+        model = EducacionDocente   # 👈 asegúrate de que este es el nombre de tu modelo
+        fields = ['nivel', 'institucion', 'titulo_obtenido', 'fecha_inicio', 'fecha_fin']
+        widgets = {
+            'nivel': forms.TextInput(attrs={'class': 'form-control'}),
+            'institucion': forms.TextInput(attrs={'class': 'form-control'}),
+            'titulo_obtenido': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        }
 
 class CapacitacionDocenteForm(forms.ModelForm):
     class Meta:

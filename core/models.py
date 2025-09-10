@@ -322,13 +322,21 @@ class HojaDeVidaDocente(models.Model):
     def __str__(self):
         return f"Hoja de Vida - {self.usuario.get_full_name()}"
 
+from django.db import models
+from django.contrib.auth.models import User  # o tu modelo de Docente
+
 class EducacionDocente(models.Model):
-    hoja_de_vida = models.ForeignKey(HojaDeVidaDocente, on_delete=models.CASCADE)
-    nivel = models.CharField(max_length=50)  # Primaria, Secundaria, Superior
-    institucion = models.CharField(max_length=100)
-    titulo_obtenido = models.CharField(max_length=100)
+    nivel = models.CharField(max_length=100)
+    institucion = models.CharField(max_length=200)
+    titulo_obtenido = models.CharField(max_length=200)
     fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
+    fecha_fin = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.titulo_obtenido} - {self.institucion}"
+
+    def _str_(self):
+        return f"{self.nivel} - {self.titulo}"
 
     def __str__(self):
         return f"{self.nivel} - {self.institucion}"
