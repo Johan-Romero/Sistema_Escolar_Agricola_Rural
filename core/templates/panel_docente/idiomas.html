@@ -1,14 +1,64 @@
-{% extends "panel_docente/dashboard_base.html" %}
+{% extends 'panel_docente/dashboard_base.html' %}
 {% load static %}
-{% block title %}Idiomas del Docente{% endblock %}
-
 {% block panel_content %}
-  <div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
-    <h1 class="h4 fw-bold text-success mb-3">
-      <i class="bi bi-translate"></i> Idiomas del Docente
-    </h1>
-    <p class="text-secondary">
-      Esta sección estará disponible próximamente.
-    </p>
+
+<!-- Encabezado -->
+<div class="p-4 bg-white rounded-4 shadow mt-3" style="max-width: 700px; margin:auto;">
+  <h1 class="h4 fw-bold text-success mb-3">
+    <i class="bi bi-translate"></i> Idiomas del Docente
+  </h1>
+</div>
+
+<!-- Formulario Idiomas -->
+<div class="card shadow-sm mb-4 mt-3" style="max-width: 700px; margin:auto;">
+  <div class="card-body">
+    <h4 class="card-title text-success mb-3">
+      <i class="fas fa-language me-2"></i> Idioma
+    </h4>
+    <h6 class="text-muted mb-4">Agregar Idioma</h6>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- Idioma -->
+      <div class="mb-3">
+        <label for="idioma" class="form-label">Idioma</label>
+        <input type="text" class="form-control" id="idioma" name="idioma" placeholder="Ej: Inglés">
+      </div>
+
+      <!-- Nivel -->
+      <div class="mb-3">
+        <label for="nivel" class="form-label">Nivel</label>
+        <select class="form-select" id="nivel" name="nivel">
+          <option value="" selected disabled>Seleccione un nivel</option>
+          <option value="Básico">Básico</option>
+          <option value="Intermedio">Intermedio</option>
+          <option value="Avanzado">Avanzado</option>
+          <option value="Nativo">Nativo</option>
+        </select>
+      </div>
+
+      <!-- Certificación (opcional) -->
+      <div class="mb-3">
+        <label for="certificacion" class="form-label">Certificación (opcional)</label>
+        <input type="text" class="form-control" id="certificacion" name="certificacion" placeholder="Ej: TOEFL, IELTS">
+      </div>
+
+      <!-- Botón Guardar -->
+      <button type="submit" class="btn btn-success w-100">Guardar</button>
+    </form>
   </div>
+</div>
+
+<!-- Lista de idiomas registrados -->
+<div class="card shadow-sm" style="max-width: 700px; margin:auto;">
+  <div class="card-body">
+    <h6 class="card-title text-secondary">Idiomas Registrados</h6>
+    <ul class="list-group">
+      <li class="list-group-item">Inglés – Avanzado (TOEFL)</li>
+      <li class="list-group-item">Francés – Intermedio</li>
+    </ul>
+  </div>
+</div>
+
 {% endblock %}

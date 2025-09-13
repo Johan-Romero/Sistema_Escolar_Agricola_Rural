@@ -453,6 +453,9 @@ class IdentidadForm(forms.ModelForm):
             }),
         }
 
+from django import forms
+from .models import EducacionDocente   # 👈 importa tu modelo (ajusta el nombre real del modelo)
+
 class EducacionDocenteForm(forms.ModelForm):
     class Meta:
         model = EducacionDocente   # 👈 asegúrate de que este es el nombre de tu modelo

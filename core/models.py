@@ -322,6 +322,9 @@ class HojaDeVidaDocente(models.Model):
     def __str__(self):
         return f"Hoja de Vida - {self.usuario.get_full_name()}"
 
+from django.db import models
+from django.contrib.auth.models import User  # o tu modelo de Docente
+
 class EducacionDocente(models.Model):
     nivel = models.CharField(max_length=100)
     institucion = models.CharField(max_length=200)
