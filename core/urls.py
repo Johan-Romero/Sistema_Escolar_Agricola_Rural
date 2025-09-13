@@ -25,7 +25,7 @@ from core.vistas.coordinador.panel import (
   
 
 )
-
+from .import views 
 from core.vistas.coordinador.gestion_academica import (
     lista_niveles, crear_nivel, editar_nivel, eliminar_nivel,
     lista_grados, crear_grado, editar_grado, eliminar_grado,
@@ -46,9 +46,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     
     path('login/', login_usuario, name='login'),
+    path('educacion/', views.educacion_docente, name='educacion_docente'),
 
-
-    # Página de inicio y bienvenida
+# Página de inicio y bienvenida
     path('bienvenida/', bienvenida, name='bienvenida'),
     path('', inicio, name='inicio'),
 
@@ -152,6 +152,7 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
 ]
+
 
 # Solo en modo desarrollo
 if settings.DEBUG:
