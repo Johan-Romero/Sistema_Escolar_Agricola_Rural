@@ -99,15 +99,15 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     correo = models.EmailField(unique=True)
     rol = models.ForeignKey(Rol, on_delete=models.PROTECT, null=True, blank=True)
 
-    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT, null=True)
-    numero_documento = models.CharField(max_length=20, unique=True, null=True)
+    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.PROTECT, default=1)
+    numero_documento = models.CharField(max_length=20, unique=True, default='0')
 
     municipio_identificacion = models.ForeignKey(
         Ciudad,
-        null=True,
-        blank=True,
         on_delete=models.SET_NULL,
-        related_name='usuarios_por_municipio_ident'
+        related_name='usuarios_por_municipio_ident',
+        null=True,
+        default=1
     )
 
     activado_por = models.ForeignKey(
@@ -303,15 +303,15 @@ class HojaDeVidaDocente(models.Model):
         on_delete=models.CASCADE,
         related_name='hoja_de_vida'
     )
-    fecha_nacimiento = models.DateField()
-    genero = models.ForeignKey('Genero', on_delete=models.SET_NULL, null=True)
-    estado_civil = models.ForeignKey('EstadoCivil', on_delete=models.SET_NULL, null=True)
-    pais_residencia = models.ForeignKey('Pais', on_delete=models.SET_NULL, null=True)
-    departamento_residencia = models.ForeignKey('Departamento', on_delete=models.SET_NULL, null=True)
-    municipio_residencia = models.ForeignKey('Ciudad', on_delete=models.SET_NULL, null=True)
-    direccion_linea1 = models.CharField(max_length=255)
+    fecha_nacimiento = models.DateField(default='2000-01-01')
+    genero = models.ForeignKey('Genero', on_delete=models.PROTECT, default=1)
+    estado_civil = models.ForeignKey('EstadoCivil', on_delete=models.PROTECT, default=1)
+    pais_residencia = models.ForeignKey('Pais', on_delete=models.PROTECT, default=1)
+    departamento_residencia = models.ForeignKey('Departamento', on_delete=models.PROTECT, default=1)
+    municipio_residencia = models.ForeignKey('Ciudad', on_delete=models.PROTECT, default=1)
+    direccion_linea1 = models.CharField(max_length=255, default='N/A')
     direccion_linea2 = models.CharField(max_length=255, blank=True, null=True)
-    estrato = models.ForeignKey('Estrato', on_delete=models.SET_NULL, null=True)
+    estrato = models.ForeignKey('Estrato', on_delete=models.PROTECT, default=1)
     telefono_celular = models.CharField(max_length=20)
     telefono_celular_alterno = models.CharField(max_length=20, blank=True, null=True)
     telefono_fijo = models.CharField(max_length=20, blank=True, null=True)
@@ -322,13 +322,21 @@ class HojaDeVidaDocente(models.Model):
     def __str__(self):
         return f"Hoja de Vida - {self.usuario.get_full_name()}"
 
+from django.db import models
+from django.contrib.auth.models import User  # o tu modelo de Docente
+
 class EducacionDocente(models.Model):
-    hoja_de_vida = models.ForeignKey(HojaDeVidaDocente, on_delete=models.CASCADE)
-    nivel = models.CharField(max_length=50)  # Primaria, Secundaria, Superior
-    institucion = models.CharField(max_length=100)
-    titulo_obtenido = models.CharField(max_length=100)
+    nivel = models.CharField(max_length=100)
+    institucion = models.CharField(max_length=200)
+    titulo_obtenido = models.CharField(max_length=200)
     fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
+    fecha_fin = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.titulo_obtenido} - {self.institucion}"
+
+    def _str_(self):
+        return f"{self.nivel} - {self.titulo}"
 
     def __str__(self):
         return f"{self.nivel} - {self.institucion}"

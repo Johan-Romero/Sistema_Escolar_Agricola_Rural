@@ -1,22 +1,34 @@
-// static/js/scroll.js
-document.addEventListener("DOMContentLoaded", function() {
-    // 🔹 Forzar que al cargar la página comience arriba
-    if (history.scrollRestoration) {
-        history.scrollRestoration = "manual"; 
-    }
-    window.scrollTo(0, 0);
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".school-nav .nav-link");
 
-    // 🔹 Agregar scroll suave solo cuando se hace click en un enlace con #
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
+  function activarLink() {
+    let scrollY = window.scrollY;
+
+    let foundSection = false; // 👈 para saber si alguna sección fue encontrada
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 130; // margen para navbar
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + sectionId) {
+            link.classList.add("active");
+          }
         });
+        foundSection = true;
+      }
     });
+
+    // 👇 Si estoy arriba de todo, desmarcar todo
+    if (!foundSection && scrollY < 200) {
+      navLinks.forEach((link) => link.classList.remove("active"));
+    }
+  }
+
+  window.addEventListener("scroll", activarLink);
+  activarLink(); // correrlo al inicio
 });

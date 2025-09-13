@@ -2,97 +2,82 @@
 {% load static %}
 
 
+
 {% block content %}
-<div class="container-fluid mt-4">
-  <div class="row">
-
-    <!-- Contenido Principal (Izquierda) -->
-    <div class="col-lg-8 mb-4">
-
-      <!-- Título y acciones -->
-      <h1 class=" text-success mb-3  bienvenida-flotante">
-  Bienvenido Coordinador
-</h1>
-
-<style>
-.bienvenida-flotante {
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-  transition: 0.3s ease;
-}
-.bienvenida-flotante:hover {
-  transform: translateY(-4px);
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
-}
-</style>
 
 
-      <div class="card shadow-sm mb-3 border-2 rounded-4" style="background-color: #f8e88c; transition: transform 0.2s ease;">
-  <div class="card-body d-flex justify-content-between align-items-center">
-    <h5 class="mb-3 fw-semibold text-warning">Validar Usuarios</h5>
-    <a href="#" class="text-decoration-none small text-dark fw-bold">VER MÁS</a>
-  </div>
-</div>
+<div class="dashboard-layout">
 
-
-      <!-- Tarjeta: Gestión de usuarios -->
-      <div class="card shadow-lg mb-3 border-2 rounded-4" style="background-color: #7af793;transition: transform 0.2s ease;">
-        <div class="card-body d-flex justify-content-between align-items-center">
-          <h5 class="mb-3 fw-semibold text-success">Gestión de usuarios</h5>
-          <a href="#" class="text-decoration-none small text-dark fw-bold">VER MÁS</a>
-        </div>
-      </div>
-
-      <!-- Tarjeta: Modificar perfil -->
-      <div class="card shadow-sm mb-3 rounded-4" style="background-color: #aeccfa;transition: transform 0.2s ease;">
-        <div class="card-body  d-flex justify-content-between align-items-center">
-          <h5 class="mb-3 fw-semibold text-primary">Modificar perfil</h5>
-          <a href="#" class="text-decoration-none small text-dark fw-bold">VER MÁS</a>
-        </div>
-      </div>
-
+  <!-- SIDEBAR IZQUIERDO -->
+  <aside class="dashboard-sidebar">
+    <div class="logo-container">
+      <img src="{% static 'img/logo1.svg' %}" alt="Logo" class="logo">
     </div>
 
-    <!-- Panel Lateral Derecho -->
-    <div class="col-lg-4">
+    <nav class="sidebar-menu">
+      <a href="{% url 'panel' %}" class="menu-link"><i class="bi bi-journal-text"></i> Inicio</a>
+      <a href="{% url 'lista_niveles' %}" class="menu-link"><i class="bi bi-journal-text"></i> Niveles Educativos</a>
+      <a href="{% url 'lista_grados' %}" class="menu-link"><i class="bi bi-collection"></i> Grados</a>
+      <a href="{% url 'lista_areas' %}" class="menu-link"><i class="bi bi-flower3"></i> Áreas</a>
+      <a href="{% url 'lista_asignaturas' %}" class="menu-link"><i class="bi bi-book-half"></i> Asignaturas</a>
+      <a href="{% url 'lista_aulas' %}" class="menu-link"><i class="bi bi-house-door"></i> Aulas</a>
+      <a href="{% url 'lista_grupos' %}" class="menu-link"><i class="bi bi-people"></i> Grupos</a>
+      <a href="{% url 'usuarios_pendientes' %}" class="menu-link"><i class="bi bi-check2-circle"></i> Validar Usuarios</a>
+    </nav>
 
-      <!-- Información del usuario -->
-      <div class="text-end mb-3">
-        <p class="mb-0 fw-semibold text-muted">Coordinador</p>
-        <p class="fw-bold text-dark">Ruben Flores</p>
-      </div>
-      <div class="mb-3">
-  <label for="fecha" class="form-label"> Fecha:</label>
-  <input type="text" id="fecha" class="form-control" placeholder="Selecciona una fecha">
-  <script>
-  ('#datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    language: 'es',
-    autoclose: true,
-    todayHighlight: true
-  });
-</script>
+    <form method="post" action="{% url 'logout' %}" class="logout-form">
+      {% csrf_token %}
+      <button type="submit" class="logout-btn">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+    </form>
+  </aside>
 
-</div>
+  <!-- CONTENIDO CENTRAL -->
+  <main class="dashboard-content">
+    {% block panel_content %}{% endblock %}
+  </main>
 
-      <!-- Usuarios activos -->
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="fw-semibold text-muted">Usuarios activos</span>
-            <a href="#" class="small text-primary">ver todos</a>
-          </div>
-          <ul class="list-unstyled small">
-            <li class="mb-1"><span class="badge bg-info rounded-circle me-2">&nbsp;</span> pedro</li>
-            <li class="mb-1"><span class="badge bg-success rounded-circle me-2">&nbsp;</span> criss</li>
-            <li class="mb-1"><span class="badge bg-danger rounded-circle me-2">&nbsp;</span> stefy</li>
-            <li class="mb-1"><span class="badge bg-warning rounded-circle me-2">&nbsp;</span> rochy</li>
-          </ul>
+  <!-- PANEL DERECHO -->
+  <aside class="dashboard-right" id="right-panel">
+
+    <!-- Dropdown de Usuario -->
+    {% if user.is_authenticated %}
+    <div class="user-dropdown">
+      <button class="btn-user" data-bs-toggle="dropdown">
+        {% if user.perfil.foto %}
+          <img src="{{ user.perfil.foto.url }}" class="user-avatar">
+        {% else %}
+          <img src="{% static 'img/default_avatar.png' %}" class="user-avatar">
+        {% endif %}
+        <div class="user-info">
+          <strong>Coordinador</strong>
+          <span>{{ user.perfil.primer_nombre }} {{ user.perfil.apellido }}</span>
         </div>
-      </div>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">Perfil</a></li>
+        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar Perfil</a></li>
+      </ul>
+    </div>
+    {% endif %}
 
-    </div> {% block panel_content %}{% endblock %}
-    
-    {% endblock %}
-  </div>
+    <!-- Calendario -->
+    <div class="calendar-container">
+      <input type="date" class="form-control mb-3">
+    </div>
+
+
+
+    <!-- Notas -->
+    <div class="notes-section">
+      <h6>Notas rápidas</h6>
+      <textarea class="form-control" placeholder="Escribe tus notas..."></textarea>
+    </div>
+
+  </aside>
 </div>
 
+
+
+{% endblock %}
