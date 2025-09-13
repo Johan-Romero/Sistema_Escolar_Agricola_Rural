@@ -412,7 +412,7 @@ class IdentificacionForm(forms.ModelForm):
     municipio_identificacion = forms.ModelChoiceField(
         queryset=Ciudad.objects.all(),
         label="Municipio de Identificación",
-        required=False,
+        required=True,
         widget=forms.Select(attrs={
             'class': 'w-full border border-gray-300 rounded px-3 py-2'
         })

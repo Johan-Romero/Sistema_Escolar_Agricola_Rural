@@ -63,18 +63,22 @@
         <div class="col-md-6 mb-3 mb-md-0">
           {{ form_identidad.primer_nombre.label_tag }}
           {{ form_identidad.primer_nombre|add_class:"form-control" }}
+          {{ form_identidad.primer_nombre.errors }}
         </div>
         <div class="col-md-6">
           {{ form_identidad.segundo_nombre.label_tag }}
           {{ form_identidad.segundo_nombre|add_class:"form-control" }}
+          {{ form_identidad.segundo_nombre.errors }}
         </div>
         <div class="col-md-6 mt-3">
           {{ form_identidad.primer_apellido.label_tag }}
           {{ form_identidad.primer_apellido|add_class:"form-control" }}
+          {{ form_identidad.primer_apellido.errors }}
         </div>
         <div class="col-md-6 mt-3">
           {{ form_identidad.segundo_apellido.label_tag }}
           {{ form_identidad.segundo_apellido|add_class:"form-control" }}
+          {{ form_identidad.segundo_apellido.errors }}
         </div>
       </div>
 
@@ -84,6 +88,7 @@
         <div class="col-md-4">
           {{ form_basico.fecha_nacimiento.label_tag }}
           {{ form_basico.fecha_nacimiento|add_class:"form-control" }}
+          {{ form_basico.fecha_nacimiento.errors }}
         </div>
         <div class="col-md-4">
           <label for="edad" class="form-label">Edad</label>
@@ -92,6 +97,7 @@
         <div class="col-md-4">
           {{ form_basico.genero.label_tag }}
           {{ form_basico.genero|add_class:"form-select" }}
+          {{ form_basico.genero.errors }}
         </div>
       </div>
 
@@ -101,30 +107,36 @@
         <div class="col-md-4">
           {{ form_basico.pais_residencia.label_tag }}
           {{ form_basico.pais_residencia|add_class:"form-select" }}
+          {{ form_basico.pais_residencia.errors }}
         </div>
         <div class="col-md-4">
           {{ form_basico.departamento_residencia.label_tag }}
           {{ form_basico.departamento_residencia|add_class:"form-select" }}
+          {{ form_basico.departamento_residencia.errors }}
         </div>
         <div class="col-md-4">
           {{ form_basico.municipio_residencia.label_tag }}
           {{ form_basico.municipio_residencia|add_class:"form-select" }}
+          {{ form_basico.municipio_residencia.errors }}
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           {{ form_basico.direccion_linea1.label_tag }}
           {{ form_basico.direccion_linea1|add_class:"form-control" }}
+          {{ form_basico.direccion_linea1.errors }}
         </div>
         <div class="col-md-6">
           {{ form_basico.direccion_linea2.label_tag }}
           {{ form_basico.direccion_linea2|add_class:"form-control" }}
+          {{ form_basico.direccion_linea2.errors }}
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           {{ form_basico.estrato.label_tag }}
           {{ form_basico.estrato|add_class:"form-select" }}
+          {{ form_basico.estrato.errors }}
         </div>
       </div>
 
@@ -134,26 +146,31 @@
         <div class="col-md-6">
           {{ form_basico.telefono_celular.label_tag }}
           {{ form_basico.telefono_celular|add_class:"form-control" }}
+          {{ form_basico.telefono_celular.errors }}
         </div>
         <div class="col-md-6">
           {{ form_basico.telefono_celular_alterno.label_tag }}
           {{ form_basico.telefono_celular_alterno|add_class:"form-control" }}
+          {{ form_basico.telefono_celular_alterno.errors }}
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           {{ form_basico.telefono_fijo.label_tag }}
           {{ form_basico.telefono_fijo|add_class:"form-control" }}
+          {{ form_basico.telefono_fijo.errors }}
         </div>
         <div class="col-md-6">
           {{ form_basico.telefono_fijo_ext.label_tag }}
           {{ form_basico.telefono_fijo_ext|add_class:"form-control" }}
+          {{ form_basico.telefono_fijo_ext.errors }}
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-md-6">
           {{ form_basico.correo_alterno.label_tag }}
           {{ form_basico.correo_alterno|add_class:"form-control" }}
+          {{ form_basico.correo_alterno.errors }}
         </div>
       </div>
 
@@ -163,6 +180,7 @@
         <div class="col-12">
           {{ form_basico.resumen.label_tag }}
           {{ form_basico.resumen|add_class:"form-control" }}
+          {{ form_basico.resumen.errors }}
         </div>
       </div>
 
