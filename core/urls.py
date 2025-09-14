@@ -36,7 +36,7 @@ from core.vistas.coordinador.gestion_academica import (
     lista_aulas, crear_aula, editar_aula, eliminar_aula,
     lista_grupos, crear_grupo, editar_grupo, eliminar_grupo,
     lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion, 
-    panel
+    panel, 
 )
 
 
@@ -54,7 +54,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     
     path('login/', login_usuario, name='login'),
-    path('educacion/', views.educacion_docente, name='educacion_docente'),
+ 
 
 # Página de inicio y bienvenida
     path('bienvenida/', bienvenida, name='bienvenida'),
