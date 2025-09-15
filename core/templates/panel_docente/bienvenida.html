@@ -1,0 +1,110 @@
+{% extends "panel_docente/dashboard_base.html" %}
+{% load static %}
+{% block panel_content %}
+<div class="container mt-4">
+  <!-- Bienvenida principal -->
+  <div class="welcome-card position-relative text-center mb-4 py-4 px-3" style="background: linear-gradient(90deg, #e3f0fc 0%, #f6fff4 100%); border-radius: 18px; box-shadow: 0 4px 24px rgba(38,60,81,.08);">
+    <span class="welcome-icon" style="position:absolute;top:18px;right:28px;font-size:3.5rem;opacity:0.18;">🎓</span>
+    <h2 style="font-size:2.5rem;font-weight:700;color:#175cd3;letter-spacing:1px;margin-bottom:0.5rem;">
+      ¡Bienvenido, {{ request.user.perfil.primer_nombre }}!
+    </h2>
+    <h5 style="font-size:1.25rem;font-weight:400;color:#2e9b59;margin-bottom:1rem;">
+      Panel docente del sistema escolar
+    </h5>
+    <p style="font-size:1.12rem;color:#222;">
+      Gestiona tus clases, asignaciones y mantente informado de las novedades escolares.
+    </p>
+  </div>
+
+  <!-- Información rápida -->
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card info-card h-100">
+        <div class="card-header">
+          <i class="bi bi-book"></i>
+          <span>Mis Asignaturas</span>
+        </div>
+        <div class="card-body">
+          {% if asignaturas %}
+            <ul class="list-group list-group-flush">
+              {% for asignatura in asignaturas %}
+                <li class="list-group-item">{{ asignatura.nombre }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No tienes asignaturas asignadas.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card info-card h-100">
+        <div class="card-header">
+          <i class="bi bi-calendar-event"></i>
+          <span>Próximos Eventos</span>
+        </div>
+        <div class="card-body">
+          {% if eventos %}
+            <ul class="list-group list-group-flush">
+              {% for evento in eventos %}
+                <li class="list-group-item">
+                  <strong>{{ evento.titulo }}</strong><br>
+                  <small>{{ evento.fecha|date:"d/m/Y H:i" }}</small>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No hay eventos próximos.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card info-card h-100">
+        <div class="card-header">
+          <i class="bi bi-envelope"></i>
+          <span>Mensajes Recientes</span>
+        </div>
+        <div class="card-body">
+          {% if mensajes %}
+            <ul class="list-group list-group-flush">
+              {% for mensaje in mensajes %}
+                <li class="list-group-item">
+                  <strong>{{ mensaje.remitente }}</strong>: {{ mensaje.texto|truncatechars:40 }}
+                  <br><small class="text-muted">{{ mensaje.fecha|date:"d/m/Y H:i" }}</small>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No tienes mensajes nuevos.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accesos rápidos -->
+  <div class="row mt-4">
+    <div class="col-md-3">
+      <a href="{% url 'docente_datos_basicos' %}" class="btn btn-outline-primary quick-access-btn w-100 mb-2">
+        <i class="bi bi-person-badge"></i> Editar mis datos
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="{% url 'panel_docente_bienvenida' %}" class="btn btn-outline-success quick-access-btn w-100 mb-2">
+        <i class="bi bi-journal-text"></i> Ver mis clases
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="{% url 'panel_docente_bienvenida' %}" class="btn btn-outline-warning quick-access-btn w-100 mb-2">
+        <i class="bi bi-calendar"></i> Calendario escolar
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="{% url 'panel_docente_bienvenida' %}" class="btn btn-outline-info quick-access-btn w-100 mb-2">
+        <i class="bi bi-envelope"></i> Mensajes
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

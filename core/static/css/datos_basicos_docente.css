@@ -1,8 +1,20 @@
+/* Habilitar scroll vertical */
 .datos-basicos-container {
   max-width: 820px;
   margin: 0 auto;
   padding: 0 8px;
+  min-height: 100vh;      /* se expande al alto de la pantalla */
+  overflow-y: auto !important;       /* permite scroll vertical */
+  padding-bottom: 2rem;   /* espacio para que no quede cortado */
 }
+
+.dashboard-layout {
+  min-height: 100vh;   /* se adapta al contenido */
+  height: auto;        /* NO forzar 100vh fijo */
+  display: flex;
+  overflow: hidden;    /* el scroll vive solo en el main */
+}
+
 .datos-basicos-card {
   background: #fff;
   border-radius: 18px;
@@ -53,3 +65,4 @@
 .bg-light {
   background: #f2f6fb !important;
 }
+

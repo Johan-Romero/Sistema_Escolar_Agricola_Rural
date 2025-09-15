@@ -13,7 +13,7 @@ from core.vistas.acudiente.panel import panel_acudiente
 from core.vistas.docente.capacitacion import docente_capacitacion_view
 from core.vistas.ajax.ubicaciones import obtener_departamentos, obtener_ciudades
 # Importamos la vista modular del docente (desde carpeta vistas_docente)
-from core.vistas.docente.docente_hoja_vida import docente_datos_basicos_view
+from core.vistas.docente.docente_hoja_vida import docente_datos_basicos_view, panel_docente_bienvenida
 from core.vistas.docente.educacion import docente_educacion_view
 
 from core.vistas.docente.idiomas import docente_idiomas_view
@@ -36,7 +36,7 @@ from core.vistas.coordinador.gestion_academica import (
     lista_aulas, crear_aula, editar_aula, eliminar_aula,
     lista_grupos, crear_grupo, editar_grupo, eliminar_grupo,
     lista_asignaciones, crear_asignacion, editar_asignacion, eliminar_asignacion, 
-    panel, 
+    panel
 )
 
 
@@ -146,11 +146,11 @@ urlpatterns = [
     path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
 
 
-    # (Los demás se agregarán más adelante)
-    # path('docente/hoja-vida/educacion/', docente_educacion_view, name='docente_educacion'),
-    # path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
-    # path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
-    # path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
+    path("docente/bienvenida/", panel_docente_bienvenida, name="panel_docente_bienvenida"),
+    path('docente/hoja-vida/educacion/', docente_educacion_view, name='docente_educacion'),
+    path('docente/hoja-vida/capacitacion/', docente_capacitacion_view, name='docente_capacitacion'),
+    path('docente/hoja-vida/idiomas/', docente_idiomas_view, name='docente_idiomas'),
+    path('docente/hoja-vida/experiencia/', docente_experiencia_view, name='docente_experiencia'),
 
     path('ajax/departamentos/', obtener_departamentos, name='ajax_departamentos'),
     path('ajax/ciudades/', obtener_ciudades, name='ajax_ciudades'),

@@ -11,22 +11,25 @@
 {% endif %}
 
 {% block panel_content %}
-<link rel="stylesheet" href="{% static 'css/datos_basicos_docente.css' %}">
+
 <div class="datos-basicos-container">
   <div class="datos-basicos-card">
     <h1 class="datos-basicos-title text-success mb-3">
       <i class="bi bi-person-badge"></i> Datos Básicos del Docente
     </h1>
-
-    {% if messages %}
-      <div class="datos-basicos-messages">
-        {% for message in messages %}
-          <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %}" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
+{% if messages %}
+  <div class="mb-3">
+    {% for message in messages %}
+      <div 
+        class="alert alert-{{ message.tags }} alert-dismissible fade show" 
+        role="alert"
+      >
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
 
     <form method="post" autocomplete="off" novalidate>
       {% csrf_token %}

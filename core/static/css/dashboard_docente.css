@@ -1,12 +1,44 @@
-/* dashboard_docente.css */
-.dashboard-docente-aside {
-    background: #f2f8fd;
-    border-right: 1px solid #e1eaf4;
-    min-height: 100vh;
+/* Layout general */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden; /* el scroll vive solo en el main */
 }
 
-.dashboard-docente-content {
-    background: #fff;
-    padding: 2rem;
-    min-height: 100vh;
+/* Sidebar izquierdo */
+.dashboard-sidebar {
+  background: #f2f8fd;
+  border-right: 1px solid #e1eaf4;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
 }
+
+/* Contenido central con scroll */
+.dashboard-content {
+  flex: 1;
+  background: #fff;
+  padding: 2rem;
+  height: 100vh;        /* ocupa toda la pantalla */
+  overflow-y: auto;     /* 👈 scroll aquí */
+  box-sizing: border-box;
+}
+
+/* Panel derecho */
+.dashboard-right {
+  width: 280px;
+  background: #f9fbfd;
+  border-left: 1px solid #e1eaf4;
+  padding: 1rem;
+  overflow-y: auto;     /* el panel derecho también puede tener scroll */
+}
+
+/* Avatar usuario en dropdown */
+.user-avatar {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+}
+

@@ -353,6 +353,13 @@ class LogroForm(forms.ModelForm):
 
 # Hoja de Vida Docentes
 class DatosBasicosDocenteForm(forms.ModelForm):
+    municipio_residencia = forms.ModelChoiceField(
+        queryset=Ciudad.objects.all(),
+        required=True,
+        label="Ciudad de Residencia",
+        error_messages={'required': "La ciudad de residencia es obligatoria."}
+    )
+    
     class Meta:
         model = HojaDeVidaDocente
         exclude = ['usuario']  # Usuario se asigna en la vista

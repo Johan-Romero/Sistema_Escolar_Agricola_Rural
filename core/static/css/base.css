@@ -1,3 +1,6 @@
+/* =========================
+   PASSWORD REQUISITOS
+   ========================= */
 .requisitos-password {
   display: none;
 }
@@ -5,21 +8,28 @@
   display: block;
 }
 
+/* =========================
+   RESET BODY Y HTML
+   ========================= */
 html, body {
   height: 100%;
   margin: 0;
-}
-body {
-  min-height: 100vh;
-  overflow: hidden;
-  background: #ffffff;
-}
-body.no-aside .layout-content {
-  left: 0 !important;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0;
 }
 
+/* Base general */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8f9fa;
+  overflow-x: hidden;     /* no scroll horizontal */
+  /* 🚨 importante: no ponemos overflow:hidden en Y para no bloquear scroll */
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
 .layout-navbar {
   position: fixed;
   top: 0;
@@ -32,6 +42,10 @@ body.no-aside .layout-content {
   display: flex;
   align-items: center;
 }
+
+/* =========================
+   ASIDE IZQUIERDO
+   ========================= */
 .layout-aside {
   position: fixed;
   top: 64px;
@@ -44,6 +58,10 @@ body.no-aside .layout-content {
   padding-top: 1.5rem;
   overflow-y: auto;
 }
+
+/* =========================
+   FOOTER
+   ========================= */
 .layout-footer {
   position: fixed;
   left: 0;
@@ -59,6 +77,10 @@ body.no-aside .layout-content {
   font-size: 0.92rem;
   color: #6c757d;
 }
+
+/* =========================
+   CONTENIDO GENERAL (para páginas que no son dashboard)
+   ========================= 
 .layout-content {
   position: absolute;
   left: 240px;
@@ -69,6 +91,11 @@ body.no-aside .layout-content {
   padding: 2rem 2rem 1.5rem 2rem;
   background: #f8f9fa;
 }
+*/
+
+/* =========================
+   RESPONSIVE
+   ========================= */
 @media (max-width: 991px) {
   .layout-aside {
     width: 65px;
@@ -81,10 +108,8 @@ body.no-aside .layout-content {
   }
 }
 
-
-
 /* =========================
-   RESPONSIVE
+   RESPONSIVE NAVBAR
    ========================= */
 @media (max-width: 600px) {
   .school-navbar {
@@ -122,55 +147,3 @@ body.no-aside .layout-content {
     margin-left: 1rem;
   }
 }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #f8f9fa;
-    }
-
-    .layout-main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-
-    .layout-aside {
-      width: 240px;
-      background: #fff;
-      box-shadow: 1px 0 8px rgba(0,0,0,0.04);
-      padding: 1.5rem;
-      overflow-y: auto;
-      flex-shrink: 0; /* Evita que el aside se encoja */
-    }
-
-    .layout-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 2rem;
-    }
-
-    .layout-footer {
-      background: #fff;
-      border-top: 1px solid #dee2e6;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.92rem;
-      color: #6c757d;
-    }
-
-    @media (max-width: 991px) {
-      .layout-aside {
-        width: 65px;
-        padding: 0.5rem;
-      }
-      .layout-content {
-        padding: 1rem;
-      }
-    }
