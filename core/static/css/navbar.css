@@ -13,7 +13,7 @@
   border: 1px solid rgba(255,255,255,0.2); /* borde suave */
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   border-radius: 50px;
-  z-index: 1050;
+  z-index: 1030;
 }
 
 /* Evitar cortes del navbar */
@@ -169,3 +169,117 @@ section[id] {
 .school-navbar-menu.show {
   display: block;
 }
+/* =========================
+   MODALES PERSONALIZADOS
+   ========================= */
+
+.modal .modal-content {
+  backdrop-filter: blur(30px);
+  background: rgba(0, 160, 72, 0.65); /* verde translúcido */
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  color: #f8f9fa; /* gris claro, más legible que blanco puro */
+}
+
+/* Título */
+.modal .modal-header .modal-title {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(0, 26, 255, 0.7); /* sombra oscura para contraste */
+  border-bottom: 2px solid rgba(255, 215, 0, 0.5);
+  padding-bottom: 5px;
+}
+
+/* Labels */
+.modal .form-label {
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(0, 38, 255, 0.438); /* hace que se lean sobre el verde */
+}
+
+/* Inputs y selects */
+.modal .form-control,
+.modal .form-select {
+  background: rgba(255, 255, 255, 0.35); /* un poco más oscuro que el fondo */
+  border: 1px solid rgba(30, 255, 0, 0.329);
+  color: #1900ff;
+}
+
+.modal .form-control:focus,
+.modal .form-select:focus {
+  background: rgba(165, 165, 165, 0.171);
+  border-color: #ffd700;
+  color: #160052;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* Placeholders */
+.modal .form-control::placeholder {
+  color: #dddddd; /* gris claro visible */
+}
+
+/* Botones */
+.modal .btn-primary {
+  background: linear-gradient(135deg, #ffd700, #ffae00);
+  color: #222; /* contraste con fondo claro */
+  font-weight: 700;
+  border: none;
+}
+.modal .btn-primary:hover {
+  background: linear-gradient(135deg, #d4d4d4, #dbdbdb);
+  color: #111;
+}
+
+/* Textos de error */
+.modal .text-danger {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  color: #070046 !important; /* rojo más claro */
+}
+
+/* Alertas dentro de modal */
+.alert-success.custom-alert {
+  background: rgba(0, 128, 64, 0.9);
+  border: 1px solid #00e676;
+  color: #eafff3;
+}
+
+.alert-danger.custom-alert {
+  background: rgba(200, 35, 51, 0.9);
+  border: 1px solid #ff6666;
+  color: #fff;
+}
+
+.alert-warning.custom-alert {
+  background: rgba(255, 193, 7, 0.9);
+  border: 1px solid #ffe066;
+  color: #332200;
+}
+/* Reglas de contraseña */
+.password-rule {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0b003d; /* blanco por defecto */
+  margin: 2px 0;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Estado validado */
+.password-rule.valid {
+  color: #ffd700; /* amarillo dorado */
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.7);
+}
+
+.modal-body {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE y Edge */
+}
+
+.modal-body::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari */
+}
+

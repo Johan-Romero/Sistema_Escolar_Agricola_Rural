@@ -25,8 +25,12 @@ class RegistroUsuarioForm(forms.ModelForm):
         help_text="Debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un símbolo (#$%!)."
     )
     confirmar_password = forms.CharField(
-        label="Confirmar Contraseña",
-        widget=PasswordInput(attrs={'class': 'w-full p-2 border rounded'})
+        label="Confirmar contraseña",
+        widget=forms.PasswordInput(attrs={
+            "class": "form-control",
+            "placeholder": "Confirmar contraseña",
+            "required": "required"  # 👈 agregado
+        })
     )
 
     # Campos auxiliares para ubicación de expedición
@@ -51,12 +55,19 @@ class RegistroUsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['correo', 'rol', 'tipo_documento', 'numero_documento', 'municipio_identificacion', 'password']
+        fields = ["correo", "rol", "tipo_documento", "numero_documento",
+                  "pais_identificacion", "departamento_identificacion",
+                  "municipio_identificacion", "password"]
+
         widgets = {
-            'correo': EmailInput(attrs={'class': 'w-full p-2 border rounded'}),
-            'rol': Select(attrs={'class': 'w-full p-2 border rounded'}),
-            'tipo_documento': Select(attrs={'class': 'w-full p-2 border rounded'}),
-            'numero_documento': TextInput(attrs={'class': 'w-full p-2 border rounded'}),
+            "correo": forms.EmailInput(attrs={"class": "form-control", "required": True}),
+            "rol": forms.Select(attrs={"class": "form-select", "required": True}),
+            "tipo_documento": forms.Select(attrs={"class": "form-select", "required": True}),
+            "numero_documento": forms.TextInput(attrs={"class": "form-control", "required": True}),
+            "pais_identificacion": forms.Select(attrs={"class": "form-select", "required": True}),
+            "departamento_identificacion": forms.Select(attrs={"class": "form-select", "required": True}),
+            "municipio_identificacion": forms.Select(attrs={"class": "form-select", "required": True}),
+            "password": forms.PasswordInput(attrs={"class": "form-control", "required": True}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -86,20 +97,22 @@ class RegistroUsuarioForm(forms.ModelForm):
         password = cleaned_data.get("password")
         confirmar = cleaned_data.get("confirmar_password")
 
-        if password != confirmar:
-            raise forms.ValidationError("⚠️ Las contraseñas no coinciden.")
-        if len(password) < 8:
-            raise forms.ValidationError("🔒 La contraseña debe tener al menos 8 caracteres.")
-        if not re.search(r'[A-Z]', password):
-            raise forms.ValidationError("🔒 La contraseña debe incluir al menos una letra mayúscula.")
-        if not re.search(r'[a-z]', password):
-            raise forms.ValidationError("🔒 La contraseña debe incluir al menos una letra minúscula.")
-        if not re.search(r'\d', password):
-            raise forms.ValidationError("🔒 La contraseña debe incluir al menos un número.")
-        if not re.search(r'[#\$%!_]', password):
-            raise forms.ValidationError("🔒 La contraseña debe incluir al menos un símbolo especial: # $ % ! _")
+        if password and confirmar:
+            if password != confirmar:
+                self.add_error("confirmar_password", "⚠️ Las contraseñas no coinciden.")
+            if len(password) < 8:
+                self.add_error("password", "🔒 La contraseña debe tener al menos 8 caracteres.")
+            if not re.search(r'[A-Z]', password):
+                self.add_error("password", "🔒 Debe incluir al menos una letra mayúscula.")
+            if not re.search(r'[a-z]', password):
+                self.add_error("password", "🔒 Debe incluir al menos una letra minúscula.")
+            if not re.search(r'\d', password):
+                self.add_error("password", "🔒 Debe incluir al menos un número.")
+            if not re.search(r'[#\$%!_]', password):
+                self.add_error("password", "🔒 Debe incluir al menos un símbolo especial: # $ % ! _")
 
         return cleaned_data
+
 
     def save(self, commit=True):
         usuario = super().save(commit=False)
@@ -243,31 +256,6 @@ class LoginForm(forms.Form):
             'autocomplete': 'current-password'
         })
     )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        correo = cleaned_data.get("correo")
-        password = cleaned_data.get("password")
-
-        if correo and password:
-            try:
-                usuario = Usuario.objects.get(correo=correo)
-            except Usuario.DoesNotExist:
-                raise forms.ValidationError("❌ Usuario o contraseña incorrectos.")
-
-            if not usuario.is_active:
-                if usuario.rol and usuario.rol.nombre.lower() == "coordinador académico":
-                    raise forms.ValidationError("🕒 Tu cuenta como Coordinador Académico aún no ha sido activada por el superusuario.")
-                else:
-                    raise forms.ValidationError("🕒 Tu cuenta aún no ha sido activada. Espera la validación.")
-
-            usuario_autenticado = authenticate(correo=correo, password=password)
-            if usuario_autenticado is None:
-                raise forms.ValidationError("❌ Usuario o contraseña incorrectos.")
-
-            self.cleaned_data["usuario"] = usuario_autenticado
-
-        return self.cleaned_data
 
 # Formulario para Nivel Educativo
 class NivelEducativoForm(forms.ModelForm):

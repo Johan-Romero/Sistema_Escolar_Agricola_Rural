@@ -26,6 +26,12 @@
 <body class="{% block body_class %}{% endblock %}">
     
   <!-- 🔽 Barra de navegación incluida -->
+<div id="custom-backdrop" class="custom-backdrop"></div> 
+{% if request.resolver_match.url_name == "bienvenida" %}
+  {% include 'includes/navbar.html' %}
+{% endif %}
+
+
   
 
     
@@ -40,6 +46,7 @@
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/scroll.js' %}"></script>
   <script src="{% static 'js/right_panel.js' %}"></script>
+  
   
   {% block extra_js %}
   <script src="{% static 'js/main.js' %}"></script>

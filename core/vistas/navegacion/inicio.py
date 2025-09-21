@@ -4,32 +4,31 @@ from django.contrib import messages
 from core.forms import ContactoForm
 from django.core.mail import send_mail
 
+from core.forms import ContactoForm, RegistroUsuarioForm, LoginForm
+
 def bienvenida(request):
-    if request.method == 'POST':
-        form = ContactoForm(request.POST)
-        if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            correo = form.cleaned_data['correo']
-            asunto = form.cleaned_data['asunto']
-            mensaje = form.cleaned_data['mensaje']
+    login_modal_form = LoginForm()
+    registro_modal_form = RegistroUsuarioForm()
 
-            try:
-                send_mail(
-                    f'Contacto: {asunto}',
-                    f'De: {nombre} <{correo}>\\n\\n{mensaje}',
-                    'noreply@agricolarural.edu.co',
-                    ['admin@agricolarural.edu.co'],
-                    fail_silently=False,
-                )
-                messages.success(request, '¡Tu mensaje ha sido enviado con éxito!')
-            except Exception as e:
-                messages.error(request, 'Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.')
+    if request.method == "POST":
+        if "registro" in request.POST:
+            registro_modal_form = RegistroUsuarioForm(request.POST)
+            if registro_modal_form.is_valid():
+                registro_modal_form.save()
+                messages.success(request, "✅ Registro exitoso. Tu cuenta será activada por un administrador.")
+                return redirect("bienvenida")
+        elif "login" in request.POST:
+            login_modal_form = LoginForm(request.POST)
+            if login_modal_form.is_valid():
+                usuario = login_modal_form.cleaned_data["usuario"]
+                login(request, usuario)
+                return redirect("bienvenida")
 
-            return redirect('bienvenida', {'ocultar_navbar': False})
-    else:
-        form = ContactoForm()
+    return render(request, "inicio.html", {
+        "login_modal_form": login_modal_form,
+        "registro_modal_form": registro_modal_form,
+    })
 
-    return render(request, 'inicio.html', {'form': form})
 
 
 @login_required

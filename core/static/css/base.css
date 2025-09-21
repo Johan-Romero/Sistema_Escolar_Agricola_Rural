@@ -30,17 +30,18 @@ body {
 /* =========================
    NAVBAR
    ========================= */
-.layout-navbar {
+/* Fondo oscuro difuminado detrás del modal */
+.custom-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1040;
-  height: 64px;
-  background: #fff;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
-  display: flex;
-  align-items: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 1045; /* Más que el navbar, menos que el modal (1050) */
+  display: none;
+}
+
+.custom-backdrop.show {
+  display: block;
 }
 
 /* =========================
