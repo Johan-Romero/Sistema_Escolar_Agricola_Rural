@@ -9,6 +9,7 @@ from core.forms import ContactoForm, RegistroUsuarioForm, LoginForm
 def bienvenida(request):
     login_modal_form = LoginForm()
     registro_modal_form = RegistroUsuarioForm()
+    contacto_form = ContactoForm()  # 👈 siempre inicializado
 
     if request.method == "POST":
         if "registro" in request.POST:
@@ -17,6 +18,7 @@ def bienvenida(request):
                 registro_modal_form.save()
                 messages.success(request, "✅ Registro exitoso. Tu cuenta será activada por un administrador.")
                 return redirect("bienvenida")
+
         elif "login" in request.POST:
             login_modal_form = LoginForm(request.POST)
             if login_modal_form.is_valid():
@@ -24,10 +26,19 @@ def bienvenida(request):
                 login(request, usuario)
                 return redirect("bienvenida")
 
+        elif "contacto" in request.POST:  # 👈 procesar formulario contacto
+            contacto_form = ContactoForm(request.POST)
+            if contacto_form.is_valid():
+                # Aquí procesas el mensaje (ejemplo: enviar correo o guardarlo en BD)
+                messages.success(request, "📩 Tu mensaje fue enviado con éxito.")
+                return redirect("bienvenida#contacto")
+
     return render(request, "inicio.html", {
         "login_modal_form": login_modal_form,
         "registro_modal_form": registro_modal_form,
+        "form": contacto_form,  # 👈 pasarlo siempre al template
     })
+
 
 
 

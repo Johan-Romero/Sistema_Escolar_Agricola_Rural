@@ -32,13 +32,16 @@
 {% endif %}
 
 
+
   
 
     
     
     {% block content %}{% endblock %}
   
-
+{% if request.resolver_match.url_name == "bienvenida" %}
+  {% include 'includes/footer.html' %}
+{% endif %}
 
   <!-- Scripts -->
    <!-- Bootstrap JS (con Popper incluido) -->

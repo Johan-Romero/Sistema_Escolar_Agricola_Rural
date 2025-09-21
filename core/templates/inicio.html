@@ -287,7 +287,9 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div class="d-grid">
-                <button type="submit" class="btn btn-success btn-lg">Enviar Mensaje</button>
+                <button type="submit" name="contacto" class="btn btn-success btn-lg">
+                    Enviar Mensaje
+                </button>
             </div>
         </form>
       </div>
